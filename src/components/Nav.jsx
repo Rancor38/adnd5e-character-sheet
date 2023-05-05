@@ -8,15 +8,15 @@ const Nav = (props) => {
             <Link to='/'>
             <li onClick={props.handler}>About Me</li>
             </Link>
-            <Link to='/skills'>
-            <li onClick={props.handler}>Skills</li>
-            </Link>
-            <Link to='/projects'>
-            <li onClick={props.handler}>Projects</li>
-            </Link>
             <DownloadPDF />
             <Link to='/contact'>
             <li onClick={props.handler}>Contact Me</li>
+            </Link>
+            <Link to='/characterlist'>
+            <li onClick={props.handler}>Character List</li>
+            </Link>
+            <Link to='/charactersheetform'>
+            <li onClick={props.handler}>Character Form</li>
             </Link>
         </ul>
     );

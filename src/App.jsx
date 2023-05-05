@@ -2,18 +2,19 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 
-
 import Nav from './components/Nav';
-import Projects from './pages/Projects';
 import Contact from './pages/Contact';
-import Skills from './pages/Skills';
 import About from './pages/About';
 import PageNotFound from './pages/PageNotFound';
 import Redirects from './components/Redirects';
+import DndCharacterSheetForm from './components/DndcharacterSheetForm';
+import CharacterList from './components/CharacterList';
+import CharacterDetails from './components/CharacterDetails';
 
 
 const App = () => {
 
+  // State(s)
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Function to handle page transition
@@ -28,16 +29,18 @@ const App = () => {
 
   return (
     <>
-    <Nav handler={handleTransition} />
-        <div className="portfolio" id={isTransitioning ? "fade-out" : "fade-in"} >
-      <Routes>
-        <Route path='/' exact element={<About />} />
-        <Route path='/skills' exact element={<Skills />} />
-        <Route path='/projects' exact element={<Projects />} />
-        <Route path='/contact' exact element={<Contact />} />
-        <Route path='/snoof' exact element={<PageNotFound />} />
-        <Route path='*' element={<Redirects/>} />
-      </Routes>
+      <Nav handler={handleTransition} />
+      <div className="portfolio" id={isTransitioning ? "fade-out" : "fade-in"} >
+        <Routes>
+          <Route path='/' exact element={<About />} />
+          <Route path='/contact' exact element={<Contact />} />
+          <Route path='/charactersheetform' exact element={<DndCharacterSheetForm />} />
+          <Route path="/character/:id" exact element={<CharacterDetails/>} />
+          <Route path='/characterlist' exact element={<CharacterList />
+          } />
+          <Route path='/snoof' exact element={<PageNotFound />} />
+          <Route path='*' element={<Redirects />} />
+        </Routes>
       </div>
     </>
   );
