@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getCookie } from "../djangocsrf/getCooke";
+import { getCookie } from "../djangocsrf/getCookie";
 
 
 function CharacterList() {
