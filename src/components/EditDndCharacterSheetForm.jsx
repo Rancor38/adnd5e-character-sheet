@@ -6,8 +6,17 @@ function EditCharacterSheetForm(props) {
   const [characterSheet, setCharacterSheet] = useState(props.character);
   
   useEffect(() => {
-    console.log(JSON.stringify(characterSheet));
-  }, [characterSheet]);
+    // Set up timer to check for changes every 20 seconds
+    const intervalId = setInterval(() => {
+      // Compare current character sheet with original props.character
+      if (JSON.stringify(characterSheet) !== JSON.stringify(props.character)) {
+        handleSubmit();
+      }
+    }, 20000);
+
+    // Cleanup function to clear timer
+    return () => clearInterval(intervalId);
+  }, [characterSheet, props.character]);
   
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -18,7 +27,8 @@ function EditCharacterSheetForm(props) {
   };
   
   const handleSubmit = (event) => {
-    event.preventDefault();
+    console.log("saved")
+    event?.preventDefault();
     const csrftoken = getCookie("csrftoken");
     // console.log(JSON.stringify(characterSheet));
     
@@ -57,56 +67,57 @@ function EditCharacterSheetForm(props) {
   return (
     <div className="character-sheet">
       <form onSubmit={handleSubmit}>
+        <h1>Name:</h1>
         <label>
-          Name:
           <input type="text" name="name" value={characterSheet.name} onChange={handleChange} />
         </label>
+        <h2>Class:</h2>
         <label>
-          Class:
           <input type="text" name="character_class" value={characterSheet.character_class} onChange={handleChange} />
         </label>
+        <h2>Race:</h2>
         <label>
-          Race:
           <input type="text" name="race" value={characterSheet.race} onChange={handleChange} />
         </label>
+        <h2>Level:</h2>
         <label>
-          Level:
           <input type="number" name="level" value={characterSheet.level} onChange={handleChange} />
         </label>
+        <h2>Abilities:</h2>
         <label>
-          Strength:
+          <h3>Strength:</h3>
           <input type="number" name="strength" value={characterSheet.strength} onChange={handleChange} />
         </label>
         <label>
-          Dexterity:
+          <h3>Dexterity:</h3>
           <input type="number" name="dexterity" value={characterSheet.dexterity} onChange={handleChange} />
         </label>
         <label>
-          Constitution:
+          <h3>Constitution:</h3>
           <input type="number" name="constitution" value={characterSheet.constitution} onChange={handleChange} />
         </label>
         <label>
-          Intelligence:
+          <h3>Intelligence:</h3>
           <input type="number" name="intelligence" value={characterSheet.intelligence} onChange={handleChange} />
         </label>
         <label>
-          Wisdom:
+          <h3>Wisdom:</h3>
           <input type="number" name="wisdom" value={characterSheet.wisdom} onChange={handleChange} />
         </label>
         <label>
-          Charisma:
+          <h3>Charisma:</h3>
           <input type="number" name="charisma" value={characterSheet.charisma} onChange={handleChange} />
         </label>
+        <h2>Equipment:</h2>
         <label>
-          Equipment:
           <textarea name="equipment" value={characterSheet.equipment} onChange={handleChange}></textarea>
         </label>
+        <h2>Spells:</h2>
         <label>
-          Spells:
           <textarea name="spells" value={characterSheet.spells} onChange={handleChange}></textarea>
         </label>
+        <h2>Backstory:</h2>
         <label>
-          Backstory:
           <textarea name="backstory" value={characterSheet.backstory} onChange={handleChange}></textarea>
         </label>
         <button type="submit">Submit</button>

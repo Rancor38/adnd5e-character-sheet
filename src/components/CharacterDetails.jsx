@@ -19,29 +19,12 @@ function CharacterDetails() {
   }, [])
 
   return (
-    <div>
-      {character ? <div>
-      <h2> { character?.name }</h2 >
-      <p>Class: {character?.class}</p>
-      <p>Race: {character?.race}</p>
-      <p>Level: {character?.level}</p>
-      <h3>Abilities</h3>
-      <p>Strength: {character?.strength}</p>
-      <p>Dexterity: {character?.dexterity}</p>
-      <p>Constitution: {character?.constitution}</p>
-      <p>Intelligence: {character?.intelligence}</p>
-      <p>Wisdom: {character?.wisdom}</p>
-      <p>Charisma: {character?.charisma}</p>
-      <h3>Equipment</h3>
-      <p>{character?.equipment}</p>
-      <h3>Spells</h3>
-      <p>{character?.spells}</p>
-      <h3>Backstory</h3>
-      <p>{character?.backstory}</p>
+    <>
+      {character ? 
       <EditCharacterSheetForm character={character} />
-      </div> : null
+       : null
       }
-    </div >
+    </ >
   );
 }
 

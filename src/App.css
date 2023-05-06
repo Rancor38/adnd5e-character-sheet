@@ -304,6 +304,63 @@
   animation: glowing 2s ease-in-out infinite;
 }
 
+.character-sheet {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.character-sheet form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  width: 1000px;
+}
+
+.character-sheet label{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.character-sheet h1, h2, h3 {
+  margin: 0;
+}
+
+.character-sheet input[type="text"], input[type="number"], textarea {
+  padding: 10px;
+  background-color: #f8f8f8;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+  font-size: 16px;
+  width: 100%;
+}
+
+.character-sheet input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+  outline: none;
+  border: 2px solid #0077c2;
+}
+
+.character-sheet button {
+  background-color: #0077c2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.character-sheet button:hover {
+  background-color: #005ea3;
+}
+
+
 @keyframes glowing {
   0% {
     transform: scale(1);
