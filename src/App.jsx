@@ -10,7 +10,6 @@ import Redirects from './components/Redirects';
 import DndCharacterSheetForm from './components/DndcharacterSheetForm';
 import CharacterList from './components/CharacterList';
 import CharacterDetails from './components/CharacterDetails';
-import AreYouSure from './pages/AreYouSure';
 
 
 const App = () => {
@@ -37,7 +36,6 @@ const App = () => {
           <Route path='/contact' exact element={<Contact />} />
           <Route path='/charactersheetform' exact element={<DndCharacterSheetForm />} />
           <Route path="/character/:id" exact element={<CharacterDetails/>} />
-          <Route path="/character/are-you-sure" exact element={<AreYouSure/>} />
           <Route path='/characterlist' exact element={<CharacterList />
           } />
           <Route path='/snoof' exact element={<PageNotFound />} />

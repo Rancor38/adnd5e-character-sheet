@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getCookie } from "../djangocsrf/getCookie";
-import AreYouSure from "../pages/AreYouSure";
+import AreYouSure from "./AreYouSure";
 
 function CharacterList() {
   const [characters, setCharacters] = useState([]);

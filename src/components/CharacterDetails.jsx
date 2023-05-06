@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import EditCharacterSheetForm from './EditDndCharacterSheetForm';
 
-function CharacterDetails({ characterList }) {
+function CharacterDetails() {
 
   const { id } = useParams();
   const [character, setCharacter] = useState(null)
@@ -37,7 +38,9 @@ function CharacterDetails({ characterList }) {
       <p>{character?.spells}</p>
       <h3>Backstory</h3>
       <p>{character?.backstory}</p>
-      </div> : null}
+      <EditCharacterSheetForm character={character} />
+      </div> : null
+      }
     </div >
   );
 }
