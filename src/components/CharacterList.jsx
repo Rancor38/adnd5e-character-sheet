@@ -1,54 +1,74 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getCookie } from "../djangocsrf/getCookie";
-
+import AreYouSure from "../pages/AreYouSure";
 
 function CharacterList() {
+  const [characters, setCharacters] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [characterToDelete, setCharacterToDelete] = useState(null);
 
-  const [characters, setCharacters] = useState([])
-
-  //useEffect to trigger an API call on the page load
   useEffect(() => {
-    axios.get('api/character_sheets/')
+    axios
+      .get("api/character_sheets/")
       .then((res) => {
-        // console.log(res.data)
-        setCharacters(res.data)
+        setCharacters(res.data);
       })
-      .catch((err) => console.log(err))
-  }, [])
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleDelete = (id) => {
+    const csrftoken = getCookie("csrftoken");
 
-    const csrftoken = getCookie('csrftoken')
-
-    axios.delete(`api/character_sheets/${id}/`, {
-      headers: {
-        "X-CSRFToken": csrftoken, //You need this thing to do non-get requests from django
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        // handle successful deletion
-        console.log('Deleted character sheet with ID:', id);
+    axios
+      .delete(`api/character_sheets/${id}/`, {
+        headers: {
+          "X-CSRFToken": csrftoken,
+          "Content-Type": "application/json",
+        },
       })
-      .catch(error => {
-        // handle error
-        console.error('Error deleting character sheet:', error);
+      .then((response) => {
+        console.log("Deleted character sheet with ID:", id);
+        setCharacters(characters.filter((c) => c.id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting character sheet:", error);
       });
-  }
+  };
+
+  const handleConfirmationYes = () => {
+    setShowConfirmation(false);
+    handleDelete(characterToDelete.id);
+  };
+
+  const handleConfirmationNo = () => {
+    setShowConfirmation(false);
+    setCharacterToDelete(null);
+  };
+
+  const handleDeleteButtonClick = (character) => {
+    setShowConfirmation(true);
+    setCharacterToDelete(character);
+  };
 
   return (
     <div>
-      {characters.map(character => (
-        <div key={character.id} className="character-list-card">
-          <a href={`/character/${character.id}`}>
-            <button>{character.name}</button>
-          </a>
-          <button
-            onClick={() => handleDelete(character.id)}>Delete
-          </button>
-        </div>
-      ))}
+      {showConfirmation ? (
+        <AreYouSure name={characterToDelete.name}
+          id={characterToDelete.id}
+          handleNo={handleConfirmationNo}
+          handleYes={handleConfirmationYes}
+         />
+      ) : (
+        characters.map((character) => (
+          <div key={character.id} className="character-list-card">
+            <a href={`/character/${character.id}`}>
+              <button>{character.name}</button>
+            </a>
+            <button onClick={() => handleDeleteButtonClick(character)}>Delete</button>
+          </div>
+        ))
+      )}
     </div>
   );
 }
