@@ -14,6 +14,11 @@ import CharacterDetails from './components/CharacterDetails';
 
 const App = () => {
 
+
+  const cookies = document.cookie
+  console.log(cookies)
+
+
   // State(s)
   const [isTransitioning, setIsTransitioning] = useState(false);
 

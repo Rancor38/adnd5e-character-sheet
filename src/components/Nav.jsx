@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DownloadPDF from './DownloadPDF';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 const Nav = (props) => {
     return (
@@ -18,6 +20,8 @@ const Nav = (props) => {
             <Link to='/charactersheetform'>
             <li onClick={props.handler}>Character Form</li>
             </Link>
+            <LoginButton />
+            <LogoutButton />
         </ul>
     );
 };
