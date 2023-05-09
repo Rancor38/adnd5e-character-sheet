@@ -16,6 +16,7 @@ function EditCharacterSheetForm(props) {
 
     // Cleanup function to clear timer
     return () => clearInterval(intervalId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterSheet, props.character]);
   
   const handleChange = (event) => {
@@ -120,7 +121,7 @@ function EditCharacterSheetForm(props) {
         <label>
           <textarea name="backstory" value={characterSheet.backstory} onChange={handleChange}></textarea>
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );

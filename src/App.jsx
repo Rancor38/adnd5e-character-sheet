@@ -10,14 +10,10 @@ import Redirects from './components/Redirects';
 import DndCharacterSheetForm from './components/DndcharacterSheetForm';
 import CharacterList from './components/CharacterList';
 import CharacterDetails from './components/CharacterDetails';
+import Profile from './components/Profile';
 
 
 const App = () => {
-
-
-  const cookies = document.cookie
-  console.log(cookies)
-
 
   // State(s)
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -34,6 +30,7 @@ const App = () => {
 
   return (
     <>
+      <Profile />
       <Nav handler={handleTransition} />
       <div className="portfolio" id={isTransitioning ? "fade-out" : "fade-in"} >
         <Routes>

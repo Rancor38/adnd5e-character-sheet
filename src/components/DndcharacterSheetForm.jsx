@@ -16,6 +16,7 @@ function DndCharacterSheetForm() {
     equipment: "",
     spells: "",
     backstory: "",
+    email: "",
   });
 
   const url = 'http://localhost:8000/api/character_sheets/';
