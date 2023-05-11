@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import DownloadPDF from './DownloadPDF';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Nav = (props) => {
+    const { isAuthenticated } = useAuth0();
     return (
         <ul className="navBar">
             <Link to='/'>
@@ -20,8 +22,7 @@ const Nav = (props) => {
             <Link to='/charactersheetform'>
             <li onClick={props.handler}>Character Form</li>
             </Link>
-            <LoginButton />
-            <LogoutButton />
+            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
         </ul>
     );
 };

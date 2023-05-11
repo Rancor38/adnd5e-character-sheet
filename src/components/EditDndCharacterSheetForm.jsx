@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getCookie } from "../djangocsrf/getCookie";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function EditCharacterSheetForm(props) {
+  const { user } = useAuth0();
   const [characterSheet, setCharacterSheet] = useState(props.character);
   
   useEffect(() => {
@@ -28,43 +30,47 @@ function EditCharacterSheetForm(props) {
   };
   
   const handleSubmit = (event) => {
-    console.log("saved")
-    event?.preventDefault();
-    const csrftoken = getCookie("csrftoken");
-    // console.log(JSON.stringify(characterSheet));
-    
-    axios.put(`http://localhost:8000/api/character_sheets/${props.character.id}/`, 
-  {
-    // data object with the updated values for the character sheet
-    name: characterSheet.name,
-    character_class: characterSheet.character_class,
-    race: characterSheet.race,
-    level: characterSheet.level,
-    strength: characterSheet.strength,
-    dexterity: characterSheet.dexterity,
-    constitution: characterSheet.constitution,
-    intelligence: characterSheet.intelligence,
-    wisdom: characterSheet.wisdom,
-    charisma: characterSheet.charisma,
-    equipment: characterSheet.equipment,
-    spells: characterSheet.spells,
-    backstory: characterSheet.backstory,
-  },
-  {
-    headers: {
-      "X-CSRFToken": csrftoken,
-      "Content-Type": "application/json",
-    },
-  }
-)
-  .then(response => {
-    console.log(response);
-  })
-  .catch(error => {
-    console.error(error);
-  });
-  };
+    if (user.sub === characterSheet.user_sub) {
 
+      console.log("saved")
+      event?.preventDefault();
+      const csrftoken = getCookie("csrftoken");
+      // console.log(JSON.stringify(characterSheet));
+      
+      axios.put(`http://localhost:8000/api/character_sheets/${props.character.id}/`, 
+      {
+        // data object with the updated values for the character sheet
+        name: characterSheet.name,
+        character_class: characterSheet.character_class,
+        race: characterSheet.race,
+        level: characterSheet.level,
+        strength: characterSheet.strength,
+        dexterity: characterSheet.dexterity,
+        constitution: characterSheet.constitution,
+        intelligence: characterSheet.intelligence,
+        wisdom: characterSheet.wisdom,
+        charisma: characterSheet.charisma,
+        equipment: characterSheet.equipment,
+        spells: characterSheet.spells,
+        backstory: characterSheet.backstory,
+        user_sub: characterSheet.user_sub
+      },
+      {
+        headers: {
+          "X-CSRFToken": csrftoken,
+          "Content-Type": "application/json",
+        },
+      }
+      )
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    } else return
+    };
+    
   return (
     <div className="character-sheet">
       <form onSubmit={handleSubmit}>

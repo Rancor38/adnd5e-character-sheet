@@ -2,15 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { getCookie } from "../djangocsrf/getCookie";
 import AreYouSure from "./AreYouSure";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function CharacterList() {
+  const { user } = useAuth0();
   const [characters, setCharacters] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [characterToDelete, setCharacterToDelete] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/character_sheets/")
+      .get(`http://localhost:8000/api/character_sheets/user/${user.sub}`)
       .then((res) => {
         setCharacters(res.data);
       })
