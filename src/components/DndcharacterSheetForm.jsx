@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function DndCharacterSheetForm() {
+  const { user } = useAuth0();
   const [characterSheet, setCharacterSheet] = useState({
     name: "",
     character_class: "",
@@ -17,13 +19,14 @@ function DndCharacterSheetForm() {
     spells: "",
     backstory: "",
     email: "",
+    user_sub: `${user?.sub}`,
   });
 
   const url = 'http://localhost:8000/api/character_sheets/';
 
 
   useEffect(() => {
-    console.log(JSON.stringify(characterSheet));
+    // console.log(JSON.stringify(characterSheet.user_sub));
   }, [characterSheet]);
 
   const handleChange = (event) => {
@@ -36,7 +39,7 @@ function DndCharacterSheetForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(JSON.stringify(characterSheet));
+    console.log(JSON.stringify(characterSheet));
     const config = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(characterSheet),

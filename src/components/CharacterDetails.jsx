@@ -10,7 +10,7 @@ function CharacterDetails() {
 
   //useEffect to trigger an API call on the page load
   useEffect(() => {
-    axios.get(`/api/character_sheets/${id}/`)
+    axios.get(`http://localhost:8000/api/character_sheets/${id}/`)
       .then((res) => {
         // console.log(res.data)
         setCharacter(res.data)

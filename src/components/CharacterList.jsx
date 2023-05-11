@@ -10,7 +10,7 @@ function CharacterList() {
 
   useEffect(() => {
     axios
-      .get("api/character_sheets/")
+      .get("http://localhost:8000/api/character_sheets/")
       .then((res) => {
         setCharacters(res.data);
       })
@@ -52,7 +52,7 @@ function CharacterList() {
   };
 
   return (
-    <div>
+    <div className="character-list">
       {showConfirmation ? (
         <AreYouSure name={characterToDelete.name}
           id={characterToDelete.id}
