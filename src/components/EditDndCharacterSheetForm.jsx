@@ -122,7 +122,7 @@ function EditCharacterSheetForm(props) {
           spell_slots_9_current: characterSheet.spell_slots_9_current,
           spells_selected_9: characterSheet.spells_selected_9,
           user_sub: characterSheet.user_sub,
-          dungeons_master_sub: characterSheet.dungeons_master_sub
+          dungeon_master_email: characterSheet.dungeon_master_email
         },
         {
           headers: {

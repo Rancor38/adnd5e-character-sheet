@@ -34,8 +34,8 @@ function DndCharacterSheetForm() {
     maximum_hit_points: 0,
     current_hit_points: 0,
     temporary_hit_points: 0,
-    total_hit_dice: "",
-    current_hit_dice: "",
+    total_hit_dice: 0,
+    current_hit_dice: 0,
     death_saving_throws_successes: 0,
     death_saving_throws_failures: 0,
     attacks_and_spellcasting: "",
@@ -89,7 +89,7 @@ function DndCharacterSheetForm() {
     spell_slots_9_current: 0,
     spells_selected_9: "",
     user_sub: `${user?.sub}`,
-    dungeon_master_sub: ""
+    dungeon_master_email: ""
   });
   
 
