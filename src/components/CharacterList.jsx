@@ -12,18 +12,18 @@ function CharacterList() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/character_sheets/user/${user.sub}`)
+      .get(`http://localhost:8000/api/character_sheets/user/${user?.sub}`)
       .then((res) => {
         setCharacters(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [user?.sub]);
 
   const handleDelete = (id) => {
     const csrftoken = getCookie("csrftoken");
 
     axios
-      .delete(`api/character_sheets/${id}/`, {
+      .delete(`http://localhost:8000/api/character_sheets/${id}/`, {
         headers: {
           "X-CSRFToken": csrftoken,
           "Content-Type": "application/json",
