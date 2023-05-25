@@ -12,7 +12,7 @@ const Nav = (props) => {
             <Link to='/'>
             <li onClick={props.handler}>About Me</li>
             </Link>
-            <DownloadPDF />
+            {/* <DownloadPDF /> */}
             <Link to='/contact'>
             <li onClick={props.handler}>Contact Me</li>
             </Link>

@@ -62,8 +62,26 @@ a img {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.character-sheet {
+  width: 95%;
+}
+
+.character-sheet form {
+  height: min-content;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
 .character-sheet form label {
-  display: block;
+  margin-right: 5px;
+}
+
+.character-sheet input {
+  flex-grow: 1;
 }
 
 .character-sheet form input[type="text"],

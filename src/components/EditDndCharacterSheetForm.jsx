@@ -22,13 +22,13 @@ function EditCharacterSheetForm(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterSheet, props.character]);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (key, newValue) => {
     setCharacterSheet((prevState) => ({
       ...prevState,
-      [name]: value,
+      [key]: newValue,
     }));
   };
+  
 
   const handleSubmit = (event) => {
     if (user.sub === characterSheet.user_sub) {
