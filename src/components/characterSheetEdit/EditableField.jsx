@@ -9,7 +9,7 @@ const EditableField = ({ label, value, onChange, className }) => {
   return (
     <>
       <label className={className}>
-        {label}:
+        {label}
         <input
           type={inputType}
           value={value == null ? '' : value} //if the value is null ignore it

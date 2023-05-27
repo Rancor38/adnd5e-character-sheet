@@ -3,6 +3,7 @@ import axios from "axios";
 import { getCookie } from "../djangocsrf/getCookie";
 import { useAuth0 } from "@auth0/auth0-react";
 import EditableField from "../components/characterSheetEdit/EditableField";
+import FieldBatch from "../components/characterSheetEdit/FieldBatch";
 
 function EditCharacterSheetForm(props) {
   const { user } = useAuth0();
@@ -28,7 +29,6 @@ function EditCharacterSheetForm(props) {
       [key]: newValue,
     }));
   };
-
 
   const handleSubmit = (event) => {
     if (user.sub === characterSheet.user_sub) {
@@ -140,23 +140,27 @@ function EditCharacterSheetForm(props) {
     } else return
   };
 
+  // What do I need to do? I need to take the editablefield. I need to make a component for a list of different "blocks" like stats, etc. Then I can put those blocks in whatever locations I want. 
+  //So I need to make a Stats.jsx that will contain a series of editable fields, each contained inside of their own div that can be independently styled.
+  
+  // ✅ or ❌
+  //Step 1, see if I can put the Editable field inside of another div within the form. ✅
+  //Make a component called a "FieldBatch" and that can render a series of EditableFields in a grouping. ✅ 
+  //Make the FieldBatch take in an input of each field we want it to render within the batch, and have a classname we give it. ✅ 
+
   return (
     <div className="character-sheet">
       <form onSubmit={handleSubmit}>
-        {Object.entries(characterSheet).map(([key, value]) => {
-          if (key === "user_sub" || key === "id") {
-            return null; // Exclude these fields from rendering
-          }
-          return (
-            <EditableField
-              key={key}
-              label={key.charAt(0).toUpperCase() + key.slice(1)}
-              value={value}
-              onChange={(newValue) => handleChange(key, newValue)}
-              className={key}
-            />
-          );
-        })}
+      <EditableField
+  key={1}
+  label={Object.keys(characterSheet)[1]}
+  value={characterSheet.name}
+  onChange={(newValue) => handleChange('name', newValue)}
+  className={characterSheet.name}
+/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="class-subclass-level" specificItems={["character_class", "character_subclass", "level", "background", "race", "alignment", "experience_points"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="class-subclass-level" specificItems={["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]}/>
+        
         <button type="submit">Save</button>
       </form>
     </div>
