@@ -151,15 +151,38 @@ function EditCharacterSheetForm(props) {
   return (
     <div className="character-sheet">
       <form onSubmit={handleSubmit}>
-      <EditableField
-  key={1}
-  label={Object.keys(characterSheet)[1]}
-  value={characterSheet.name}
-  onChange={(newValue) => handleChange('name', newValue)}
-  className={characterSheet.name}
-/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="class-subclass-level" specificItems={["character_class", "character_subclass", "level", "background", "race", "alignment", "experience_points"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="class-subclass-level" specificItems={["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="top-level-info" specificItems={["name"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="top-level-info" specificItems={["character_class", "character_subclass", "level", "background", "race", "alignment", "experience_points"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="stats" specificItems={["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="saving-throw-proficiencies" specificItems={["saving_throw_proficiencies"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="skill-proficiencies" specificItems={["skill_proficiencies"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="passive-perception" specificItems={["passive_perception"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="other-proficiencies" specificItems={["other_proficiencies"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="ac-init-speed" specificItems={["armor_class", "initiative", "speed"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="hit-points" specificItems={["current_hit_points", "temporary_hit_points"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="hit-dice" specificItems={["total_hit_dice", "current_hit_dice"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="death-saves" specificItems={["death_saving_throws_successes", "death_saving_throws_failures"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="attacks-spellcasting" specificItems={["attacks_and_spellcasting"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="weapons" specificItems={["weapons"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="equipment-treasure" specificItems={["equipment", "treasure"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="ideals-bonds-flaws" specificItems={["ideals", "bonds", "flaws"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="features" specificItems={["features"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="physical-features" specificItems={["age", "height", "weight", "eyes", "skin", "hair"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="allies-and-orgs" specificItems={["allies_and_organizations"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="backstory" specificItems={["backstory"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spellcasting-stats" specificItems={["spellcasting_ability", "spellcasting_attack_bonus", "spellcasting_save_dc", "spellcasting_class", "spells"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="cantrips" specificItems={["cantrips"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-1" specificItems={["spell_slots_1_current", "spell_slots_1_max", "spells_selected_1"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-2" specificItems={["spell_slots_2_current", "spell_slots_2_max", "spells_selected_2"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-3" specificItems={["spell_slots_3_current", "spell_slots_3_max", "spells_selected_3"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-4" specificItems={["spell_slots_4_current", "spell_slots_4_max", "spells_selected_4"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-5" specificItems={["spell_slots_5_current", "spell_slots_5_max", "spells_selected_5"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-6" specificItems={["spell_slots_6_current", "spell_slots_6_max", "spells_selected_6"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-7" specificItems={["spell_slots_7_current", "spell_slots_7_max", "spells_selected_7"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-8" specificItems={["spell_slots_8_current", "spell_slots_8_max", "spells_selected_8"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-9" specificItems={["spell_slots_9_current", "spell_slots_9_max", "spells_selected_9"]}/>
+    
+    
         
         <button type="submit">Save</button>
       </form>
