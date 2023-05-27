@@ -145,8 +145,10 @@ function EditCharacterSheetForm(props) {
   
   // ✅ or ❌
   //Step 1, see if I can put the Editable field inside of another div within the form. ✅
-  //Make a component called a "FieldBatch" and that can render a series of EditableFields in a grouping. ✅ 
-  //Make the FieldBatch take in an input of each field we want it to render within the batch, and have a classname we give it. ✅ 
+  //Make a component called a "FieldBatch" and that can render a series of EditableFields in a grouping. ✅
+  //Make the FieldBatch take in an input of each field we want it to render within the batch, and have a classname we give it. ✅
+  //take everything out of the grid
+  //make every field-batch its own special component that can be unique to each group of properties (leave fieldbatch as reference for the future to clone additional things off from.)
 
   return (
     <div className="character-sheet">
