@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getCookie } from "../djangocsrf/getCookie";
 import { useAuth0 } from "@auth0/auth0-react";
-import EditableField from "./EditableField";
+import EditableField from "../components/characterSheetEdit/EditableField";
 
 function EditCharacterSheetForm(props) {
   const { user } = useAuth0();
@@ -28,7 +28,7 @@ function EditCharacterSheetForm(props) {
       [key]: newValue,
     }));
   };
-  
+
 
   const handleSubmit = (event) => {
     if (user.sub === characterSheet.user_sub) {
@@ -144,11 +144,8 @@ function EditCharacterSheetForm(props) {
     <div className="character-sheet">
       <form onSubmit={handleSubmit}>
         {Object.entries(characterSheet).map(([key, value]) => {
-          if (key === "user_sub") {
-            return null; // exclude this field from rendering
-          }
-          if (key === "id") {
-            return null; // exclude this field from rendering
+          if (key === "user_sub" || key === "id") {
+            return null; // Exclude these fields from rendering
           }
           return (
             <EditableField
@@ -156,6 +153,7 @@ function EditCharacterSheetForm(props) {
               label={key.charAt(0).toUpperCase() + key.slice(1)}
               value={value}
               onChange={(newValue) => handleChange(key, newValue)}
+              className={key}
             />
           );
         })}

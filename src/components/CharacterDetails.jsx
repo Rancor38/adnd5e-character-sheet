@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import EditCharacterSheetForm from './EditDndCharacterSheetForm';
+import EditCharacterSheetForm from '../pages/EditDndCharacterSheetForm';
 
 function CharacterDetails() {
 
@@ -20,9 +20,9 @@ function CharacterDetails() {
 
   return (
     <>
-      {character ? 
-      <EditCharacterSheetForm character={character} />
-       : null
+      {character ?
+        <EditCharacterSheetForm character={character} />
+        : null
       }
     </ >
   );

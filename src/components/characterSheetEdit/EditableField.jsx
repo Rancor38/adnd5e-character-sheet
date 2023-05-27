@@ -1,4 +1,4 @@
-const EditableField = ({ label, value, onChange }) => {
+const EditableField = ({ label, value, onChange, className }) => {
   let inputType = 'text';
   if (typeof value === 'boolean') {
     inputType = 'checkbox';
@@ -8,7 +8,7 @@ const EditableField = ({ label, value, onChange }) => {
 
   return (
     <>
-      <label>
+      <label className={className}>
         {label}:
         <input
           type={inputType}

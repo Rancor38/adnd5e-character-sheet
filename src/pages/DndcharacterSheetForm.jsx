@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from 'react-router-dom';
-import EditableField from "./EditableField";
+import EditableField from "../components/characterSheetEdit/EditableField";
 
 function DndCharacterSheetForm() {
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ function DndCharacterSheetForm() {
     user_sub: `${user?.sub}`,
     dungeon_master_email: ""
   });
-  
+
 
   const url = 'http://localhost:8000/api/character_sheets/';
 
@@ -130,19 +130,19 @@ function DndCharacterSheetForm() {
   return (
     <div className="character-sheet">
       <form onSubmit={handleSubmit}>
-      {Object.entries(characterSheet).map(([key, value]) => {
-      if (key === "user_sub") {
-        return null; // exclude this field from rendering
-      }
-      return (
-        <EditableField
-          key={key}
-          label={key.charAt(0).toUpperCase() + key.slice(1)}
-          value={value}
-          onChange={(newValue) => handleChange(key, newValue)}
-        />
-      );
-    })}
+        {Object.entries(characterSheet).map(([key, value]) => {
+          if (key === "user_sub") {
+            return null; // exclude this field from rendering
+          }
+          return (
+            <EditableField
+              key={key}
+              label={key.charAt(0).toUpperCase() + key.slice(1)}
+              value={value}
+              onChange={(newValue) => handleChange(key, newValue)}
+            />
+          );
+        })}
         <button type="submit">Submit</button>
       </form>
     </div>
