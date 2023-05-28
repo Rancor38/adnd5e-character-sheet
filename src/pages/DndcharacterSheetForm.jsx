@@ -23,6 +23,7 @@ function DndCharacterSheetForm() {
     alignment: "",
     experience_points: 0,
     inspiration: "",
+    proficiency_bonus: 0,
     skill_proficiencies: "",
     saving_throw_proficiencies: "",
     other_proficiencies: "",

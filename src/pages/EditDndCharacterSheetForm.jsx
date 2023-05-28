@@ -56,6 +56,7 @@ function EditCharacterSheetForm(props) {
           alignment: characterSheet.alignment,
           experience_points: characterSheet.experience_points,
           inspiration: characterSheet.inspiration,
+          proficiency_bonus: characterSheet.proficiency_bonus,
           skill_proficiencies: characterSheet.skill_proficiencies,
           saving_throw_proficiencies: characterSheet.saving_throw_proficiencies,
           other_proficiencies: characterSheet.other_proficiencies,
@@ -153,9 +154,10 @@ function EditCharacterSheetForm(props) {
   return (
     <div className="character-sheet">
       <form onSubmit={handleSubmit}>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="top-level-info" specificItems={["name"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="name" specificItems={["name"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="top-level-info" specificItems={["character_class", "character_subclass", "level", "background", "race", "alignment", "experience_points"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="stats" specificItems={["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="inspiration-proficiency" specificItems={["inspiration", "proficiency_bonus"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="saving-throw-proficiencies" specificItems={["saving_throw_proficiencies"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="skill-proficiencies" specificItems={["skill_proficiencies"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="passive-perception" specificItems={["passive_perception"]}/>

@@ -64,46 +64,12 @@ a img {
 
 .character-sheet {
   width: 95%;
+  display: flex;
+  flex-direction: column;
 }
 
-.character-sheet form {
-  height: min-content;
-  width: 90%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-}
-
-.character-sheet form label {
-  margin-right: 5px;
-}
-
-.character-sheet input {
-  flex-grow: 1;
-}
-
-.character-sheet form input[type="text"],
-.character-sheet form input[type="number"],
-.character-sheet form textarea {
-  width: 100%;
-  padding: 5px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-}
-
-.character-sheet form button[type="submit"] {
-  padding: 5px 10px;
-  background-color: #333333;
-  color: #fff;
-  border-radius: 3px;
-  border: none;
-  cursor: pointer;
-}
-
-.character-sheet form button[type="submit"]:hover {
-  background-color: #4d4d4d;
+.character-sheet .name {
+  width: 30%;
 }
 
 .character-list {
