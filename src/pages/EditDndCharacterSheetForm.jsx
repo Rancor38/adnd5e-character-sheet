@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getCookie } from "../djangocsrf/getCookie";
 import { useAuth0 } from "@auth0/auth0-react";
-import EditableField from "../components/characterSheetEdit/EditableField";
 import FieldBatch from "../components/characterSheetEdit/FieldBatch";
 
 function EditCharacterSheetForm(props) {
@@ -141,6 +140,13 @@ function EditCharacterSheetForm(props) {
     } else return
   };
 
+  //Function and State to handle the collapsible divs
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  const handleToggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   // What do I need to do? I need to take the editablefield. I need to make a component for a list of different "blocks" like stats, etc. Then I can put those blocks in whatever locations I want. 
   //So I need to make a Stats.jsx that will contain a series of editable fields, each contained inside of their own div that can be independently styled.
   
@@ -152,29 +158,39 @@ function EditCharacterSheetForm(props) {
   //make every field-batch its own special component that can be unique to each group of properties (leave fieldbatch as reference for the future to clone additional things off from.)
 
   return (
-    <div className="character-sheet">
-      <form onSubmit={handleSubmit}>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="name" specificItems={["name"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="top-level-info" specificItems={["character_class", "character_subclass", "level", "background", "race", "alignment", "experience_points"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="stats" specificItems={["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="inspiration-proficiency" specificItems={["inspiration", "proficiency_bonus"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="saving-throw-proficiencies" specificItems={["saving_throw_proficiencies"]}/>
+    <div className="sheet-wrapper">
+      <span className="sidebar">
+      <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="stats" specificItems={["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]}/>
+      <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="saving-throw-proficiencies" specificItems={["saving_throw_proficiencies"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="skill-proficiencies" specificItems={["skill_proficiencies"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="passive-perception" specificItems={["passive_perception"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="other-proficiencies" specificItems={["other_proficiencies"]}/>
+      </span>
+    <main className="sheet-main">
+      <form onSubmit={handleSubmit}>
+        <div className="line-1">
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="name" specificItems={["name"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="top-level-info" specificItems={["character_class", "character_subclass", "level", "background", "race", "alignment", "experience_points"]}/>
+          </div>
+          <div className="line-2">
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="inspiration-proficiency" specificItems={["inspiration", "proficiency_bonus"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="ac-init-speed" specificItems={["armor_class", "initiative", "speed"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="attacks-spellcasting" specificItems={["attacks_and_spellcasting"]}/>
+          </div>
+          <div className="line-3">
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="hit-points" specificItems={["current_hit_points", "temporary_hit_points"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="hit-dice" specificItems={["total_hit_dice", "current_hit_dice"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="death-saves" specificItems={["death_saving_throws_successes", "death_saving_throws_failures"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="attacks-spellcasting" specificItems={["attacks_and_spellcasting"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="weapons" specificItems={["weapons"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="equipment-treasure" specificItems={["equipment", "treasure"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="ideals-bonds-flaws" specificItems={["ideals", "bonds", "flaws"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="death-saves" specificItems={["total_hit_dice", "current_hit_dice"]}/>
+          </div>
+          <div className="line-4">
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="features" specificItems={["features"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="physical-features" specificItems={["age", "height", "weight", "eyes", "skin", "hair"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="allies-and-orgs" specificItems={["allies_and_organizations"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="backstory" specificItems={["backstory"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spellcasting-stats" specificItems={["spellcasting_ability", "spellcasting_attack_bonus", "spellcasting_save_dc", "spellcasting_class", "spells"]}/>
+          </div>
+          <button onClick={handleToggleCollapse}>
+        {isCollapsed ? 'Expand Spellslot Details' : 'Collapse Spellslot Details'}
+      </button>
+          {!isCollapsed && (
+          <div className="spellcasting collapsible-content">
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="cantrips" specificItems={["cantrips"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-1" specificItems={["spell_slots_1_current", "spell_slots_1_max", "spells_selected_1"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-2" specificItems={["spell_slots_2_current", "spell_slots_2_max", "spells_selected_2"]}/>
@@ -185,12 +201,24 @@ function EditCharacterSheetForm(props) {
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-7" specificItems={["spell_slots_7_current", "spell_slots_7_max", "spells_selected_7"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-8" specificItems={["spell_slots_8_current", "spell_slots_8_max", "spells_selected_8"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="spell-level-9" specificItems={["spell_slots_9_current", "spell_slots_9_max", "spells_selected_9"]}/>
+    </div>
+          )}
+          <div className="line-5">
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="weapons" specificItems={["weapons"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="equipment-treasure" specificItems={["equipment", "treasure"]}/>
+          </div>
+          <div className="line-6">
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="ideals-bonds-flaws" specificItems={["ideals", "bonds", "flaws", "allies_and_organizations"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="physical-features" specificItems={["age", "height", "weight", "eyes", "skin", "hair"]}/>
+          </div>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="backstory" specificItems={["backstory"]}/>
     
     
         
         <button type="submit">Save</button>
       </form>
-    </div>
+      </main>
+      </div>
   );
 }
 

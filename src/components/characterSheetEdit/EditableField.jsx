@@ -6,20 +6,24 @@ const EditableField = ({ label, value, onChange, className }) => {
     inputType = 'number';
   }
 
+  const formattedLabel = label
+    .split('_')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
   return (
     <>
       <label className={className}>
-        {label}
+        {formattedLabel}
         <input
           type={inputType}
-          value={value == null ? '' : value} //if the value is null ignore it
+          value={value == null ? '' : value}
           onChange={(e) => onChange(e.target.value)}
         />
       </label>
     </>
   );
-}
-
+};
 
 
 export default EditableField;

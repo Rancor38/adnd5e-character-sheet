@@ -1,165 +1,275 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
 }
 
 /* set a default font family and size */
 body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
 }
 
 /* set a background color for the page */
 body {
-  background-color: #f2f2f2;
+        background-color: #f2f2f2;
 }
 
 /* style the navigation bar */
 .navBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  background-color: #333;
-  padding: 10px;
-  color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        background-color: #333;
+        padding: 10px;
+        color: #fff;
 }
 
 .navBar li {
-  margin-right: 10px;
+        margin-right: 10px;
 }
 
 .navBar a {
-  text-decoration: none;
-  color: #fff;
+        text-decoration: none;
+        color: #fff;
 }
 
 /* style the buttons */
 button {
-  background-color: #3333;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 3px;
-  margin-left: 10px;
-  cursor: pointer;
+        background-color: #3333;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        margin-left: 10px;
+        cursor: pointer;
 }
 
 /* style the LinkedIn and GitHub icons */
 a img {
-  width: 50px;
-  height: auto;
-  margin-left: 10px;
+        width: 50px;
+        height: auto;
+        margin-left: 10px;
 }
 
 /* style the portfolio section */
 .portfolio {
-  margin: 20px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.character-sheet {
-  width: 95%;
+form {
   display: flex;
   flex-direction: column;
 }
 
-.character-sheet .name {
-  width: 30%;
-}
-
-.character-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
-}
-
-.character-list-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+form div {
+  /* border: 1px solid #ccc; */
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.character-list-card button {
-  padding: 5px 10px;
-  background-color: #333333;
-  color: #fff;
-  border-radius: 3px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
+form label {
+  display: block;
+  margin-bottom: 5px;
 }
 
-.character-list-card button:hover {
-  background-color: #585858;
-}
-
-.character-list-card a {
-  text-decoration: none;
-}
-
-.character-list-card button:first-child {
-  margin-right: auto;
-}
-
-.character-sheet {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
-  justify-items: center;
-  text-align: center;
-}
-
-h1, h2, h3 {
-  grid-column: 1 / span 2;
-  margin: 10px 0;
-}
-
-label {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: center;
-  grid-gap: 10px;
+form input[type="text"],
+form input[type="number"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button[type="submit"] {
-  margin-top: 20px;
+  grid-column: 1 / -1;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.line-1 {
+  display: flex;
+  justify-content: space-evenly
+}
+
+
+.top-level-info {
+        display: flex;
+        flex-wrap: wrap;
+}
+
+.top-level-info label {
+        width: 200px;
+}
+
+.stats {
+        min-width: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; 
+        align-items: flex-start;
+}
+
+.stats label {
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+}
+
+.sheet-wrapper {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-evenly;
+}
+
+.sheet-wrapper input[type="text"] {
+        background-color: #fff;
+        color: #333;
+        
+}
+.sheet-wrapper input[type="number"] {
+        background-color: #fff;
+        color: #333;
+        
+}
+
+.sheet-main {
+        width: 70%;
+        margin: 10px;
+}
+
+
+.sidebar {
+        width: 16%;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+}
+
+.line-2 {
+        display: flex;
+        justify-content: space-around;
+}
+
+.ac-init-speed {
+        display: flex;
+}
+
+.line-3 {
+        display: flex;
+        justify-content: space-evenly;
+}
+
+.line-4 {
+        display: flex;
+        justify-content: space-evenly;
+}
+
+.collapsible-content {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 20px;
+}
+
+form button {
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+}
+
+.line-5 {
+        display: flex;
+        justify-content: space-evenly;
+}
+
+.line-6 {
+        display: flex;
+        justify-content: space-evenly;
+}
+
+.spellcasting {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 10px;
+      }
+      
+      .spellcasting div {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+      
+
+.character-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+}
+
+.character-list-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.character-list-card button {
+        padding: 5px 10px;
+        background-color: #333333;
+        color: #fff;
+        border-radius: 3px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+}
+
+.character-list-card button:hover {
+        background-color: #585858;
+}
+
+.character-list-card a {
+        text-decoration: none;
+}
+
+.character-list-card button:first-child {
+        margin-right: auto;
+}
+
+h1,
+h2,
+h3 {
+        grid-column: 1 / span 2;
+        margin: 10px 0;
+}
+
+button[type="submit"] {
+        margin-top: 20px;
 }
 
 input[type="text"],
 input[type="datetime-local"],
 input[type="color"],
 input[type="number"],
-input, textarea,
+input,
+textarea,
 select {
-  box-shadow: inset 1px 1px 3px #ccc;
-  border-radius: 5px;
-  color: #ffffff;
-  background-color: #333333;
-}
-
-
-/* make the portfolio section responsive */
-@media only screen and (max-width: 768px) {
-  .portfolio {
-    margin: 10px;
-    padding: 10px;
-  }
-
-  form {
-    flex-direction: column;
-  }
-
-  .character-sheet label:not(:last-child),
-  .character-sheet textarea:not(:last-child) {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
+        box-shadow: inset 1px 1px 3px #ccc;
+        border-radius: 5px;
+        color: #ffffff;
+        background-color: #333333;
 }
