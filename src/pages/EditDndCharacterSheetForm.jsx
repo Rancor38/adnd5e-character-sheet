@@ -180,7 +180,7 @@ function EditCharacterSheetForm(props) {
           <div className="line-3">
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="hit-points" specificItems={["current_hit_points", "temporary_hit_points"]}/>
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="hit-dice" specificItems={["total_hit_dice", "current_hit_dice"]}/>
-    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="death-saves" specificItems={["total_hit_dice", "current_hit_dice"]}/>
+    <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="death-saves" specificItems={["death_saving_throws_successes","death_saving_throws_failures"]}/>
           </div>
           <div className="line-4">
     <FieldBatch characterSheet={characterSheet} handleChange={handleChange} className="features" specificItems={["features"]}/>

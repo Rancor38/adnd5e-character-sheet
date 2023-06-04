@@ -11,14 +11,21 @@ const EditableField = ({ label, value, onChange, className }) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
+    const handleInputChange = (e) => {
+      const inputValue = e.target.value;
+      e.target.style.height = 'auto';
+      e.target.style.height = Math.min(e.target.scrollHeight, 1000) + 'px';
+      onChange(inputValue);
+    };
+  
   return (
     <>
       <label className={className}>
         {formattedLabel}
-        <input
-          type={inputType}
+        <textarea
+          style={{ resize: 'none' }}
           value={value == null ? '' : value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={handleInputChange}
         />
       </label>
     </>
